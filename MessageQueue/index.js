@@ -6,8 +6,7 @@ module.exports = {
     messageQueue: new Queue(),
 
     init: () => {
-        console.log('Init message Handlers');
-        
+                
         parseMessages();
 
         return this;
