@@ -1,4 +1,4 @@
-require('./udpSocket');
+require('./udpSocket')();
 const express = require('express');
 const app = express();
 

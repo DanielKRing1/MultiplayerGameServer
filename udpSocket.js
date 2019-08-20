@@ -8,7 +8,7 @@ const HOST = '127.0.0.1';
 
 module.exports = () => {
     const socket = dgram.createSocket('udp4');
-    
+
     // INIT
     socket.on('listening', () => {
         const { address, port } = socket.address();
