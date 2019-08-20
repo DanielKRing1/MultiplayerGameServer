@@ -6,7 +6,7 @@ module.exports = {
     messageQueue: new Queue(),
 
     init: () => {
-                
+
         parseMessages();
 
         return this;
@@ -16,6 +16,7 @@ module.exports = {
     
         this.messageQueue.enqueue(msg);
     
+        setImmediate(parseMessages);
     }
 }
 
@@ -38,6 +39,4 @@ const parseMessages = () => {
                 break;
         }
     }
-
-    setImmediate(parseMessages);
 }
