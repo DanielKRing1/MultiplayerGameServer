@@ -9,7 +9,7 @@ module.exports = {
 
         parseMessages();
 
-        return this;
+        return module.exports;
     
     },
     queueMessage: (msg) => {
