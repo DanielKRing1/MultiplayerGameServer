@@ -33,7 +33,7 @@ module.exports = () => {
     // CLOSE
     socket.on('close', () => console.log('Socket has closed !'));
 
-    socket.bind(PORT, HOST);
+    socket.bind(PORT);
 
     // const app = express();
     // app.get('/', (req, res) => res.send(JSON.stringify({ Hello: 'World'})));
