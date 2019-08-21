@@ -2,7 +2,15 @@ const uuidv1 = require('uuid/v1');
 const { createAndSendToken } = require('../util/jwt');
 const Board = require('../GameElements/Board');
 
+const init = () => {
+    // Init boards with first board
+    firstBoard = new Board();
+
+    this.boards = {};
+    this.boards[firstBoard.id] = firstBoard;
+}
 init();
+
 
 module.exports = {
     // Create JWT for user to 
@@ -32,14 +40,6 @@ module.exports = {
             res.send(err);
         }
     },
-}
-
-const init = () => {
-    // Init boards with first board
-    firstBoard = new Board();
-
-    this.boards = {};
-    this.boards[firstBoard.id] = firstBoard;
 }
 
 
