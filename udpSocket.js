@@ -3,7 +3,8 @@ const dgram                             = require('dgram')
 const { queueMessage }                  = require('./MessageQueue').init();
 
 const PORT = process.env.PORT || 3002;
-const HOST = '127.0.0.1';
+const HOST = '52.52.199.187';
+//127.0.0.1;
 
 
 module.exports = () => {
@@ -33,7 +34,7 @@ module.exports = () => {
     // CLOSE
     socket.on('close', () => console.log('Socket has closed !'));
 
-    socket.bind(PORT);
+    socket.bind(PORT, HOST);
 
     // const app = express();
     // app.get('/', (req, res) => res.send(JSON.stringify({ Hello: 'World'})));
