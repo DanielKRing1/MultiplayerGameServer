@@ -8,6 +8,8 @@ const init = () => {
 
     this.boards = {};
     this.boards[firstBoard.id] = firstBoard;
+
+    this.currentBoardId = firstBoard.id;
 }
 init();
 
@@ -44,7 +46,7 @@ module.exports = {
 
 
 const getCurrentBoard = () => {
-    let currentBoard = this.boards[this.boards.length - 1];
+    let currentBoard = this.boards[this.currentBoardId];
 
     if(currentBoard.isFull()) {
         currentBoard = new Board();
