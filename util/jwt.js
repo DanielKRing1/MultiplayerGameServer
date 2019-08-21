@@ -9,7 +9,7 @@ const signOptions = {
     issuer: i,
     subject: s,
     audience: a,
-    expiresIn: '30d',
+    expiresIn: '1d',
     algorithm: 'HS256'
 }
 
