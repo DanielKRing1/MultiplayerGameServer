@@ -3,9 +3,9 @@ const Queue = require('../Queue');
 const { movePlayer } = require('./MessageHandlers/Player');
 
 module.exports = {
-    messageQueue: new Queue(),
-
     init: () => {
+
+        this.messageQueue = new Queue();
 
         parseMessages();
 
@@ -21,7 +21,7 @@ module.exports = {
 }
 
 const parseMessages = () => {
-    while(!module.exports.messageQueue.isEmpty()) {
+    while(!this.messageQueue.isEmpty()) {
 
         const msg = this.messageQueue.dequeue();
 
