@@ -28,12 +28,10 @@ module.exports = {
             res.send(err);
         }
     },
-
-
 }
 
-function init() {    
-    // Init with first board
+function init() {
+    // Init boards with first board
     firstBoard = new Board();
 
     this.boards = {};
