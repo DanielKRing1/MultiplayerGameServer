@@ -7,6 +7,10 @@ init();
 module.exports = {
     // Create JWT for user to 
     addPlayer: async (req, res) => {
+        console.log('Called addPlayer()');
+        console.log(req.body);
+
+
         const userId = uuidv1();
 
         // Add Player to Board
