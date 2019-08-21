@@ -34,7 +34,7 @@ module.exports = {
     },
 }
 
-function init() {
+const init = () => {
     // Init boards with first board
     firstBoard = new Board();
 
