@@ -2,9 +2,13 @@ require('dotenv').config();
 
 require('./udpSocket')();
 
+const bodyParser = require('body-parser');
 // Express
 const express = require('express');
 const app = express();
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+
 // Router
 const router = express.Router();
 app.use(router);
