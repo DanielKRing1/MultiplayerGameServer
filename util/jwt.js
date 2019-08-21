@@ -10,7 +10,7 @@ const signOptions = {
     subject: s,
     audience: a,
     expiresIn: '30d',
-    algorithm: 'RS256'
+    algorithm: 'HS256'
 }
 
 module.exports = {
