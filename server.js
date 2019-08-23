@@ -6,6 +6,9 @@ const bodyParser = require('body-parser');
 // Express
 const express = require('express');
 const app = express();
+// Get remote IP address
+app.enable('trust proxy');
+
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
