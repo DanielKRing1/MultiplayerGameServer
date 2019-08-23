@@ -1,4 +1,4 @@
-const gameCtrl = require('../controllers/gameCtrl');
+const gameCtrl = require('../controllers/gameCtrl').init();
 
 module.exports = (router) => {
     router

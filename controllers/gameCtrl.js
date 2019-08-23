@@ -1,26 +1,21 @@
 const { createAndSendToken } = require('../util/jwt');
 const Board = require('../GameElements/Board');
 
-const init = () => {
-    // Init boards with first board
-    firstBoard = new Board();
-
-    this.boards = {};
-    this.boards[firstBoard.id] = firstBoard;
-
-    this.currentBoardId = firstBoard.id;
-}
-init();
-
+let boards = {};
+let currentBoardId;
 
 module.exports = {
+    init: () => {
+        initBoards();
+
+        return module.exports;
+    },
+
     // Create JWT for user to 
     addPlayer: async (req, res) => {
-        console.log('Called addPlayer()');
-        console.log(req.body);
-
 
         const playerIp = req.ip;
+        console.log('Called addPlayer()');
 
         // Add Player to Board
         const currentBoard = getCurrentBoard();
@@ -43,14 +38,26 @@ module.exports = {
     },
 }
 
+const initBoards = () => {
+    console.log('Called INIT BOARDS------------');
+    // Init boards with first board
+    firstBoard = new Board();
+
+    boards[firstBoard.id] = firstBoard;
+    currentBoardId = firstBoard.id;
+}
 
 const getCurrentBoard = () => {
-    let currentBoard = this.boards[this.currentBoardId];
+    const currentBoard = boards[currentBoardId];
 
-    if(currentBoard.isFull()) {
-        currentBoard = new Board();
-        this.boards[currentBoard.id] = currentBoard;
-    }
+    if(currentBoard.isFull()) return createNewBoard();
+    else return currentBoard;
+}
+const createNewBoard = () => {
+    let newBoard = new Board();
+    // Add to list
+    boards[newBoard.id] = newBoard;
+    currentBoardId = newBoard.id;
 
-    return currentBoard;
+    return newBoard;
 }
