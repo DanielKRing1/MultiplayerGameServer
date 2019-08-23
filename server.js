@@ -3,7 +3,7 @@ require('dotenv').config();
 require('./udpSocket')();
 
 const bodyParser = require('body-parser');
-// Express
+// EXPRESS
 const express = require('express');
 const app = express();
 // Get remote IP address
@@ -12,7 +12,10 @@ app.enable('trust proxy');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-// Router
+// DATABASE
+require('./Databases/redis').init();
+
+// ROUTER
 const router = express.Router();
 app.use(router);
 const routes = require('./routes');
