@@ -24,19 +24,25 @@ const parseMessages = () => {
     while(!this.messageQueue.isEmpty()) {
 
         const msg = this.messageQueue.dequeue();
+        const jsonMsg = JSON.parse(msg);
+        
+        handleMessage(jsonMsg);
+    }
+}
 
-        switch(msg.type) {
-            case 'move-player':
-                movePlayer();
-                break;
+const handleMessage = (msg) => {
 
-            case 'B':
-                console.log('B');
-                break;
+    switch(msg.type) {
+        case 'move-player':
+            movePlayer();
+            break;
 
-            case 'C':
-                console.log('C');
-                break;
-        }
+        case 'B':
+            console.log('B');
+            break;
+
+        case 'C':
+            console.log('C');
+            break;
     }
 }
