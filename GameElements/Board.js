@@ -45,12 +45,12 @@ const Board = class {
         this.playerCount = 0;
     }
 
-    addPlayer(playerId) {
+    addPlayer(playerIp) {
         const xPos = randInt(0, this.width);
         const yPos = randInt(0, this.height);
-        const newPlayer = new Player(playerId, xPos, yPos, 1, 'a');
+        const newPlayer = new Player(playerIp, xPos, yPos, 1, 'a');
 
-        this.players[playerId] = newPlayer;
+        this.players[playerIp] = newPlayer;
         this.playerCount++;
     }
 
