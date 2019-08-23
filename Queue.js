@@ -1,7 +1,8 @@
 class Queue {
     constructor() {
         // Head remains empty
-        this.head = this.tail = {};
+        this.head = undefined;
+        this.tail = undefined;
 
         this.length = 0;
     }
@@ -9,10 +10,16 @@ class Queue {
     enqueue(data) {
         if(data === undefined) return console.log('No data');
 
+        // Create node
         const newNode = { data };
-
-        this.tail.next = newNode;
+        
+        // New tail
+        const oldTail = this.tail;
         this.tail = newNode;
+
+        if(this.isEmpty()) this.head = this.tail;
+        else oldTail.next = newNode;
+                
         this.length++;
     }
 
@@ -25,6 +32,9 @@ class Queue {
         // Replace head
         this.head = this.head.next;
         this.length--;
+
+        // Remove tail
+        if(this.isEmpty()) this.head = this.tail = undefined;
         
         return oldHead.data;
     }
@@ -34,7 +44,7 @@ class Queue {
     }
 
     isEmpty() {
-        return this.peek() === undefined;
+        return this.head === undefined;
     }
 }
 
