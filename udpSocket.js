@@ -67,7 +67,6 @@ const msgIsValid = async(msg) => {
 }
 
 const parseMessage = (msg) => {
-    const msg = this.messageQueue.dequeue();
     const jsonMsg = JSON.parse(msg);
     
     return jsonMsg;
