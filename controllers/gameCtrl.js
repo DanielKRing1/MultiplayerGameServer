@@ -16,14 +16,13 @@ module.exports = {
 
         const playerIp = req.ip;
         console.log('Called addPlayer()');
-        
-        try{
-    
-            // ADD PLAYER TO BOARD
-            const currentBoard = getCurrentBoard();
-            await currentBoard.addPlayer(playerIp);
 
-            // RETURN JWT TO USER
+        // ADD PLAYER TO BOARD
+        const currentBoard = getCurrentBoard();
+        currentBoard.addPlayer(playerIp);
+
+        // RETURN JWT TO USER
+        try{
             const payload = {
                 playerIp,
                 boardId: currentBoard.id

@@ -1,10 +1,10 @@
 const Circle = require('./Circle');
 
 const Player = class extends Circle {
-    constructor(id, xPos, yPos, radius, type) {
+    constructor(id, xPos, yPos, radius, team) {
         super(id, xPos, yPos, radius);
 
-        this.type = type;
+        this.team = team;
     }
 }
 
