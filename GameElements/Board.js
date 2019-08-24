@@ -41,11 +41,30 @@ const Board = class {
         this.height = boardHeight;
         this.width = boardWidth;  
         
-        this.players = {};
         this.playerCount = 0;
     }
 
     async addPlayer(playerIp) {
+
+        let obj = {};
+
+        console.time('JS Object');
+        for(let i = 0; i < 50000; i++) {
+            obj[i] = i;
+        }
+        console.timeEnd('JS Object');
+        console.log('Done ^')
+        console.log();
+
+        let client = Board.players;
+        console.time('Redis');
+        for(let i = 0; i < 50000; i++) {
+            client.hset(i, i);
+        }
+        console.timeEnd('Redis');
+        console.log('Done ^')
+        console.log();
+
         const xPos = randInt(0, this.width);
         const yPos = randInt(0, this.height);
 
@@ -63,7 +82,7 @@ const Board = class {
             const obj = await Board.players.hgetallAsync(playerIp);
             console.log('Player Redis data');
             console.log(obj);
-            
+
         }catch(err) {
             console.log(err);
         }
