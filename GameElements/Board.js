@@ -45,7 +45,7 @@ const Board = class {
         this.playerCount = 0;
     }
 
-    addPlayer(playerIp) {
+    async addPlayer(playerIp) {
         const xPos = randInt(0, this.width);
         const yPos = randInt(0, this.height);
 
@@ -53,14 +53,20 @@ const Board = class {
         Board.players.hmset(playerIp, [
             'position', `${xPos} ${yPos}`,
             'radius', '1',
-            
+
         ]);
 
-        const obj = Board.players.hgetallAsync(playerIp);
-        console.log('Player Redis data');
-        console.log(obj);
-
         //const newPlayer = new Player(playerIp, xPos, yPos, 1, 'a');
+
+        try {
+
+            const obj = await Board.players.hgetallAsync(playerIp);
+            console.log('Player Redis data');
+            console.log(obj);
+            
+        }catch(err) {
+            console.log(err);
+        }
 
         this.players[playerIp] = newPlayer;
         this.playerCount++;
