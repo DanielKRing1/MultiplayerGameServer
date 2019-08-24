@@ -1,6 +1,7 @@
 const dgram                             = require('dgram')
 //const express                         = require('express');
-const { queueMessage }                  = require('./MessageQueue').init();
+const { queueMessage, handleMessage }                  = require('./MessageQueue').init();
+const { verifyToken }                   = require('./util/jwt');
 
 const PORT = process.env.PORT || 3002;
 const HOST = '127.0.0.1';
@@ -17,10 +18,13 @@ module.exports = () => {
     })
 
     // MESSAGE
-    socket.on('message', (msg, remote) => {
+    socket.on('message', async(msg, remote) => {
         console.log(`${remote.address} : ${remote.port} - ${msg}`);
 
-        queueMessage(msg);
+        const parsedMsg = parseMessage(msg);
+        if(msgIsValid(parsedMsg)) handleMessage(parsedMsg);
+
+        //queueMessage(msg);
     });
 
 
@@ -38,4 +42,33 @@ module.exports = () => {
     // const app = express();
     // app.get('/', (req, res) => res.send(JSON.stringify({ Hello: 'World'})));
     // app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+}
+
+const msgIsValid = async(msg) => {
+    const { jwt } = msg;
+
+    try {
+        
+        const valid = await verifyToken(jwt);
+
+        console.time('jwt');
+        for(let i = 0; i < 1000; i++) {
+            await verifyToken(jwt);
+        }
+        console.timeEnd('jwt');
+
+        if(valid) return true;
+        else return false;
+
+    }catch(err) {
+        console.log(err);
+        return false;
+    }
+}
+
+const parseMessage = (msg) => {
+    const msg = this.messageQueue.dequeue();
+    const jsonMsg = JSON.parse(msg);
+    
+    return jsonMsg;
 }

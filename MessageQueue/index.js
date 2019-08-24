@@ -12,11 +12,29 @@ module.exports = {
         return module.exports;
     
     },
+
     queueMessage: (msg) => {
     
         this.messageQueue.enqueue(msg);
     
         setImmediate(parseMessages);
+    },
+
+    handleMessage: (msg) => {
+
+        switch(msg.type) {
+            case 'move-player':
+                movePlayer();
+                break;
+
+            case 'B':
+                console.log('B');
+                break;
+
+            case 'C':
+                console.log('C');
+                break;
+        }
     }
 }
 
@@ -30,19 +48,19 @@ const parseMessages = () => {
     }
 }
 
-const handleMessage = (msg) => {
+// const handleMessage = (msg) => {
 
-    switch(msg.type) {
-        case 'move-player':
-            movePlayer();
-            break;
+//     switch(msg.type) {
+//         case 'move-player':
+//             movePlayer();
+//             break;
 
-        case 'B':
-            console.log('B');
-            break;
+//         case 'B':
+//             console.log('B');
+//             break;
 
-        case 'C':
-            console.log('C');
-            break;
-    }
-}
+//         case 'C':
+//             console.log('C');
+//             break;
+//     }
+// }
