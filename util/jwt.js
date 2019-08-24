@@ -30,13 +30,9 @@ module.exports = {
     getToken: async (payload) => {
         try {
             console.log('In createJwt');
-            console.time('jwt');
             const token = await jwt.sign(payload, privateKey, signOptions);
-            console.timeEnd('jwt');
 
-            console.time('log');
             console.log(token);
-            console.timeEnd('log');
             
             console.log('token');
             return token;
@@ -47,7 +43,7 @@ module.exports = {
     verifyToken: async (token) => {
         try{
             console.log('Verifying');
-            const payload = await jwt.verify(token, publicKey, signOptions);
+            const payload = await jwt.verify(token, privateKey, signOptions);
 
             return payload;
         }catch(err) {
