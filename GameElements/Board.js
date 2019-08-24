@@ -1,4 +1,5 @@
 const uuidv1 = require('uuid/v1');
+const { getClient } = require('../Databases/redis');
 
 const Player = require('./Player');
 const { randInt } = require('../util/methods');
@@ -33,7 +34,6 @@ const { boardWidth, boardHeight, playersPerBoard } = require('../util/constants'
 
 // totalPercentages.forEach(percentage => console.log(`${percentage / iterations * 100} %`));
 
-
 const Board = class {
 
     constructor() {
@@ -48,7 +48,19 @@ const Board = class {
     addPlayer(playerIp) {
         const xPos = randInt(0, this.width);
         const yPos = randInt(0, this.height);
-        const newPlayer = new Player(playerIp, xPos, yPos, 1, 'a');
+
+        // Store in Redis
+        Board.players.hmset(playerIp, [
+            'position', `${xPos} ${yPos}`,
+            'radius', '1',
+            
+        ]);
+
+        const obj = Board.players.hgetallAsync(playerIp);
+        console.log('Player Redis data');
+        console.log(obj);
+
+        //const newPlayer = new Player(playerIp, xPos, yPos, 1, 'a');
 
         this.players[playerIp] = newPlayer;
         this.playerCount++;
@@ -58,5 +70,8 @@ const Board = class {
         return this.playerCount >= playersPerBoard;
     }
 }
+
+// Static
+Board.players = getClient();
 
 module.exports = Board;
