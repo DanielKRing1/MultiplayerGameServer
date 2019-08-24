@@ -12,6 +12,7 @@ const Board = class {
         this.height = boardHeight;
         this.width = boardWidth;  
         
+        this.players = {};
         this.playerCount = 0;
     }
 
