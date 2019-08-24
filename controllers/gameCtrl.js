@@ -17,12 +17,12 @@ module.exports = {
         const playerIp = req.ip;
         console.log('Called addPlayer()');
 
-        // Add Player to Board
+        // ADD PLAYER TO BOARD
         const currentBoard = getCurrentBoard();
         currentBoard.addPlayer(playerIp);
 
+        // RETURN JWT TO USER
         try{
-        
             const payload = {
                 playerIp,
                 boardId: currentBoard.id
@@ -38,6 +38,8 @@ module.exports = {
     },
 }
 
+
+// GAME BOARD
 const initBoards = () => {
     console.log('Called INIT BOARDS------------');
     // Init boards with first board
