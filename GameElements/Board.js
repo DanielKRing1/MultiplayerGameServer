@@ -50,7 +50,7 @@ const Board = class {
 
         console.time('JS Object');
         for(let i = 0; i < 50000; i++) {
-            obj[i] = i;
+            obj[i].a = i;
         }
         console.timeEnd('JS Object');
         console.log('Done ^')
@@ -59,7 +59,7 @@ const Board = class {
         let client = Board.players;
         console.time('Redis');
         for(let i = 0; i < 50000; i++) {
-            client.hset(i, i);
+            client.hset(i, 'a', i);
         }
         console.timeEnd('Redis');
         console.log('Done ^')
