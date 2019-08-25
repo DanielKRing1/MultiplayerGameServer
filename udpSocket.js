@@ -51,14 +51,14 @@ const msgIsValid = async(msg) => {
         
         const valid = await verifyToken(jwt);
 
-        console.time('jwt');
-        for(let i = 0; i < 1000; i++) {
-            await verifyToken(jwt);
-        }
-        console.timeEnd('jwt');
+        // // Test jwt speed
+        // console.time('jwt');
+        // for(let i = 0; i < 1000; i++) {
+        //     await verifyToken(jwt);
+        // }
+        // console.timeEnd('jwt');
 
-        if(valid) return true;
-        else return false;
+        return !!valid;
 
     }catch(err) {
         console.log(err);

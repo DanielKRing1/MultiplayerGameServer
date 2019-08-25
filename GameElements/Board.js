@@ -33,6 +33,6 @@ const Board = class {
 }
 
 // Static
-Board.players = getClient();
+// Board.players = getClient();
 
 module.exports = Board;

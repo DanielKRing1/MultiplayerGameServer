@@ -24,10 +24,10 @@ module.exports = {
 
         const { eventType } = msg;
 
-        switch(msg.type) {
+        switch(eventType) {
             case 'update-direction':
 
-                updatePlayerDirection();
+                updatePlayerDirection(msg);
                 break;
 
             case 'B':

@@ -1,6 +1,8 @@
 module.exports = {
-    updatePlayerDirection: () => {
-        console.log('Update Player position');
+    updatePlayerDirection: (msg) => {
+        console.log('Update Player direction');
+
+        const { direction } = msg;
     },
     
 }
