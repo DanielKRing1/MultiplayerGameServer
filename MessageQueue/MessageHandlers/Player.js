@@ -1,6 +1,6 @@
 module.exports = {
-    movePlayer: () => {
-        console.log('Moving player');
+    updatePlayerDirection: () => {
+        console.log('Update Player position');
     },
     
 }

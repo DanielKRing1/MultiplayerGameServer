@@ -1,6 +1,6 @@
 const Queue = require('../Queue');
 
-const { movePlayer } = require('./MessageHandlers/Player');
+const { updatePlayerDirection } = require('./MessageHandlers/Player');
 
 module.exports = {
     init: () => {
@@ -22,9 +22,12 @@ module.exports = {
 
     handleMessage: (msg) => {
 
+        const { eventType } = msg;
+
         switch(msg.type) {
-            case 'move-player':
-                movePlayer();
+            case 'update-direction':
+
+                updatePlayerDirection();
                 break;
 
             case 'B':
