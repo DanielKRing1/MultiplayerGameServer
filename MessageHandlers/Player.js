@@ -4,7 +4,8 @@ module.exports = {
     updatePlayerDirection: (msg, boards) => {
         console.log('Update Player direction');
 
-        const { id, boardId, direction } = msg;
+        const { direction } = msg;
+        const { id, boardId } = msg.jwt;
         
         // Get board and player
         const playerBoard = boards[boardId];
