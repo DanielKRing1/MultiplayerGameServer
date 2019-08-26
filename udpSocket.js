@@ -1,6 +1,5 @@
-const dgram                             = require('dgram')
-//const express                         = require('express');
-const { queueMessage, handleMessage }                  = require('./MessageQueue').init();
+const dgram                             = require('dgram');
+const { handleMessage }                 = require('./controllers/gameCtrl');
 const { verifyToken }                   = require('./util/jwt');
 
 const PORT = process.env.PORT || 3002;
@@ -22,9 +21,8 @@ module.exports = () => {
         console.log(`${remote.address} : ${remote.port} - ${msg}`);
 
         const parsedMsg = parseMessage(msg);
-        if(msgIsValid(parsedMsg)) handleMessage(parsedMsg);
+        if(await msgIsValid(parsedMsg)) handleMessage(parsedMsg);
 
-        //queueMessage(msg);
     });
 
 
@@ -38,27 +36,19 @@ module.exports = () => {
     socket.on('close', () => console.log('Socket has closed !'));
 
     socket.bind(PORT);
-
-    // const app = express();
-    // app.get('/', (req, res) => res.send(JSON.stringify({ Hello: 'World'})));
-    // app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 }
 
+
+// Replaces encrypted jwt with decrypted jwt payload
 const msgIsValid = async(msg) => {
-    const { jwt } = msg;
+    const { jwt, eventType } = msg;
 
     try {
         
-        const valid = await verifyToken(jwt);
+        const payload = await verifyToken(jwt);
+        msg.jwt = payload;
 
-        // // Test jwt speed
-        // console.time('jwt');
-        // for(let i = 0; i < 1000; i++) {
-        //     await verifyToken(jwt);
-        // }
-        // console.timeEnd('jwt');
-
-        return !!valid;
+        return !!payload && eventType !== undefined;
 
     }catch(err) {
         console.log(err);
