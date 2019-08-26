@@ -1,7 +1,7 @@
 const { createAndSendToken } = require('../util/jwt');
 const Board = require('../GameElements/Board');
 
-const { updatePlayerDirection } = require('./MessageHandlers/Player');
+const { updatePlayerDirection } = require('../MessageHandlers/Player');
 
 let boards = {};
 let currentBoardId;
