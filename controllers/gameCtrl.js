@@ -1,6 +1,8 @@
 const { createAndSendToken } = require('../util/jwt');
 const Board = require('../GameElements/Board');
 
+const { updatePlayerDirection } = require('./MessageHandlers/Player');
+
 let boards = {};
 let currentBoardId;
 
@@ -24,7 +26,7 @@ module.exports = {
         // RETURN JWT TO USER
         try{
             const payload = {
-                playerIp,
+                id: playerIp,
                 boardId: currentBoard.id
             };
             
@@ -36,6 +38,25 @@ module.exports = {
             res.send(err);
         }
     },
+
+    handleMessage: (msg) => {
+        const { eventType } = msg;
+
+        switch(eventType) {
+            case 'update-direction':
+
+                updatePlayerDirection(msg, boards);
+                break;
+
+            case 'collision-player':
+                console.log('B');
+                break;
+
+            case 'collision-food':
+                console.log('C');
+                break;
+        }
+    }
 }
 
 
@@ -43,7 +64,7 @@ module.exports = {
 const initBoards = () => {
     console.log('Called INIT BOARDS------------');
     // Init boards with first board
-    firstBoard = new Board();
+    const firstBoard = new Board();
 
     boards[firstBoard.id] = firstBoard;
     currentBoardId = firstBoard.id;
@@ -52,8 +73,7 @@ const initBoards = () => {
 const getCurrentBoard = () => {
     const currentBoard = boards[currentBoardId];
 
-    if(currentBoard.isFull()) return createNewBoard();
-    else return currentBoard;
+    return currentBoard.isFull() ? createNewBoard() : currentBoard;
 }
 const createNewBoard = () => {
     let newBoard = new Board();
