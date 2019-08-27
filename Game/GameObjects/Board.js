@@ -1,9 +1,9 @@
 const uuidv1 = require('uuid/v1');
-const { getClient } = require('../Redis/redis');
+const { getClient } = require('../../Redis/redis');
 
 const Player = require('./Player');
-const { randInt } = require('../util/methods');
-const { boardWidth, boardHeight, playersPerBoard } = require('../util/constants');
+const { randInt } = require('../../util/methods');
+const { boardWidth, boardHeight, playersPerBoard } = require('../../util/constants');
 
 const Board = class {
 

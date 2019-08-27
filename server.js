@@ -1,14 +1,12 @@
 require('dotenv').config();
 
-require('./UdpSocket/udpSocket')();
-
-const bodyParser = require('body-parser');
 // EXPRESS
 const express = require('express');
 const app = express();
 // Get remote IP address
 app.enable('trust proxy');
 
+const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
