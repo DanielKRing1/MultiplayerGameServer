@@ -3,7 +3,7 @@ require('../UdpSocket');
 require('../UdpSocket/Listener');
 const a = require('../UdpSocket/Sender');
 
-const { addPlayerToBoard } = require('../Game/BoardManager').init();
+const { addPlayerToBoard, getCurrentBoardId } = require('../Game/BoardManager').init();
 const { createAndSendToken } = require('../util/jwt');
 
 module.exports = {
@@ -26,7 +26,7 @@ module.exports = {
         try{
             const payload = {
                 id: playerIp,
-                boardId: currentBoard.id
+                boardId: getCurrentBoardId()
             };
             
             // Once added, send encrypted playerIp and boardId to user
