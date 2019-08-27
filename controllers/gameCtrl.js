@@ -1,5 +1,5 @@
 // SOCKET
-require('../UdpSocket')();
+require('../UdpSocket');
 require('../UdpSocket/Listener');
 const a = require('../UdpSocket/Sender');
 
