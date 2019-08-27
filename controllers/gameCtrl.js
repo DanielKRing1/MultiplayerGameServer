@@ -10,7 +10,7 @@ module.exports = {
     init: () => {
         initBoards();
 
-        init
+        // init
 
         return module.exports;
     },

@@ -1,6 +1,6 @@
 const dgram                             = require('dgram');
-const { handleMessage }                 = require('./controllers/gameCtrl');
-const { verifyToken }                   = require('./util/jwt');
+const { handleMessage }                 = require('../controllers/gameCtrl');
+const { verifyToken }                   = require('../util/jwt');
 
 const PORT = process.env.PORT || 3002;
 const HOST = '127.0.0.1';

@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 // DATABASE
-require('./Redis/redis').init();
+// require('./Redis/redis').init();
 
 // ROUTER
 const router = express.Router();
