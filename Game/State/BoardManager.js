@@ -1,4 +1,4 @@
-const Board = require('../Game/GameObjects/Board');
+const Board = require('../GameObjects/Board');
 
 let boards = {};
 let currentBoardId;

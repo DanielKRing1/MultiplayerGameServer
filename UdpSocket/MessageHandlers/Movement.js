@@ -1,5 +1,5 @@
 const { normalizeVector } = require('../../util/methods');
-const { getBoards } = require('../../Game/BoardManager');
+const { getBoards } = require('../../Game/State/BoardManager');
 
 module.exports = {
     updatePlayerDirection: (msg) => {

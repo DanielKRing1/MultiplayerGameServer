@@ -1,6 +1,6 @@
-const Queue = require('../Queue');
+const Queue = require('../../Queue');
 
-const { updatePlayerDirection } = require('./Player');
+const { updatePlayerDirection } = require('../../MessageHandlers/Player');
 
 module.exports = {
     init: () => {

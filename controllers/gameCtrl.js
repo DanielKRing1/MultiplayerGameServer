@@ -3,7 +3,7 @@ require('../UdpSocket');
 require('../UdpSocket/Listener');
 const a = require('../UdpSocket/Sender');
 
-const { addPlayerToBoard, getCurrentBoardId } = require('../Game/BoardManager').init();
+const { addPlayerToBoard, getCurrentBoardId } = require('../Game/State/BoardManager').init();
 const { createAndSendToken } = require('../util/jwt');
 
 module.exports = {
