@@ -1,4 +1,4 @@
-const dgram                             = require('dgram');
+const dgram = require('dgram');
 
 const PORT = process.env.PORT || 3002;
 const HOST = '127.0.0.1';

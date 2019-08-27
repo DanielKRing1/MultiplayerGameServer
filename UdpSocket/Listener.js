@@ -1,5 +1,6 @@
 const socket = require('./');
 const { handleMessage } = require('./MessageHandlers');
+const  { verifyToken } = require('../util/jwt');
 
 // INIT
 socket.on('listening', () => {
