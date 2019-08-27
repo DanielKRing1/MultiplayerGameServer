@@ -8,6 +8,8 @@ const HOST = '127.0.0.1';
 module.exports = () => {
     const socket = dgram.createSocket('udp4');
 
+    socket.bind(PORT);
+
     // INIT
     socket.on('listening', () => {
         const { address, port } = socket.address();
@@ -34,7 +36,6 @@ module.exports = () => {
     // CLOSE
     socket.on('close', () => console.log('Socket has closed !'));
 
-    socket.bind(PORT);
 }
 
 
