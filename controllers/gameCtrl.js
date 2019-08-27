@@ -8,8 +8,6 @@ const { createAndSendToken } = require('../util/jwt');
 
 module.exports = {
     init: () => {
-        initBoards();
-
         // init
 
         return module.exports;
