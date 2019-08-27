@@ -10,6 +10,8 @@ module.exports = {
     init: () => {
         initBoards();
 
+        init
+
         return module.exports;
     },
 
