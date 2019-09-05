@@ -1,4 +1,5 @@
-const socket = require('./');
+const buffer = require('buffer');
+const socket = require('dgram').createSocket('udp4');
 
 const PORT = 5000;
 const HOST = '107.185.103.222';
