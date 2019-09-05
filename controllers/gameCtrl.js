@@ -25,7 +25,7 @@ module.exports = {
         // RETURN JWT TO USER
         try{
             const payload = {
-                id: playerIp,
+                ip: playerIp,
                 boardId: getCurrentBoardId()
             };
             

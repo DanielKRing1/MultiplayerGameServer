@@ -1,5 +1,5 @@
 const uuidv1 = require('uuid/v1');
-const { getClient } = require('../../Redis/redis');
+const { getClient } = require('../../Redis');
 
 const Player = require('./Player');
 const { randInt } = require('../../util/methods');
@@ -21,7 +21,7 @@ const Board = class {
         const xPos = randInt(0, this.width);
         const yPos = randInt(0, this.height);
 
-        const newPlayer = new Player(playerIp, xPos, yPos, 1, 'a');
+        const newPlayer = new Player(playerIp, xPos, yPos, 0, 0, 1, 'a');
 
         this.players[playerIp] = newPlayer;
         this.playerCount++;

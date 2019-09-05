@@ -1,4 +1,4 @@
-const players = require('./redis').getClient();
+const players = require('./').getClient();
 
 module.exports = {
     
