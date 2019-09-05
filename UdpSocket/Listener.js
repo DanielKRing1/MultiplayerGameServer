@@ -6,7 +6,7 @@ const  { verifyToken } = require('../util/jwt');
 socket.on('listening', () => {
     const { address, port } = socket.address();
 
-    console.log(`socket listening at ${address} : ${port}`);
+    console.log(`Socket listening at ${address} : ${port}`);
 })
 
 // MESSAGE
@@ -36,6 +36,7 @@ const msgIsValid = async(msg) => {
 
     try {
         
+        // Append decrypted JWT
         const payload = await verifyToken(jwt);
         msg.jwt = payload;
 
