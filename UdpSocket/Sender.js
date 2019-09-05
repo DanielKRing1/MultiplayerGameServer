@@ -6,8 +6,8 @@ const HOST = '107.185.103.222';
 module.exports = {
     sendMessage: (msg) => {
 
-        const msg = new Buffer('Message from server');
-        socket.send(msg, 0, msg.length, PORT, HOST, (err, bytes) => {
+        const message = new Buffer('Message from server');
+        socket.send(message, 0, message.length, PORT, HOST, (err, bytes) => {
             if(err) throw err;
 
             console.log(`UDP message sent to ${HOST} : ${PORT}`);
