@@ -10,6 +10,8 @@ const socket = dgram.createSocket('udp4');
 socket.bind(PORT);
 
 const { sendMessage } = require('./Sender');
+
+console.log('Init Send Message');
 setInterval(sendMessage, 500);
 
 module.exports = socket;
