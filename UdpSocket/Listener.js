@@ -2,6 +2,8 @@ const socket = require('./');
 const { handleMessage } = require('./MessageHandlers');
 const  { verifyToken } = require('../util/jwt');
 
+console.log('Init Listener');
+
 // INIT
 socket.on('listening', () => {
     const { address, port } = socket.address();
@@ -29,6 +31,10 @@ socket.on('error', (error) => {
 socket.on('close', () => console.log('Socket has closed !'));
 
 
+const { sendMessage } = require('./Sender');
+
+// setInterval(sendMessage, 1000);
+sendMessage();
 
 // Replaces encrypted jwt with decrypted jwt payload
 const msgIsValid = async(msg) => {

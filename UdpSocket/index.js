@@ -9,9 +9,4 @@ const HOST = '127.0.0.1';
 const socket = dgram.createSocket('udp4');
 socket.bind(PORT);
 
-const { sendMessage } = require('./Sender');
-
-console.log('Init Send Message');
-setInterval(sendMessage, 500);
-
 module.exports = socket;
