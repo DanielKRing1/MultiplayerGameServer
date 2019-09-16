@@ -1,9 +1,12 @@
 const Circle = require('./Circle');
 
 const Player = class extends Circle {
-    constructor(id, xPos, yPos, xDir, yDir, radius, team) {
+    constructor(ip, port, xPos, yPos, xDir, yDir, radius, team) {
+        const id = "" + ip + port;
         super(id, xPos, yPos, radius);
 
+        this.ip = ip;
+        this.port = port;
         this.team = team;
         this.direction = {
             x: xDir,

@@ -1,13 +1,13 @@
 const dgram = require('dgram');
-const socket = require('./');
 
 const PORT = 3002;
-const HOST = '98.149.97.185';
-//98.149.97.185
+const HOST = process.env.HOST;
 
+let socket;
 console.log('Init Sender');
 
 module.exports = {
+    init: (s) => socket = s,
     sendMessage: (msg) => {
 
         const message = JSON.stringify({ test: 'test' });

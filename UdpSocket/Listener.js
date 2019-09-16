@@ -1,61 +1,67 @@
-const socket = require('./');
 const { handleMessage } = require('./MessageHandlers');
 const  { verifyToken } = require('../util/jwt');
 
-console.log('Init Listener');
+module.exports = {
 
-// INIT
-socket.on('listening', () => {
-    const { address, port } = socket.address();
+    init: (socket) => {
+        console.log('Init Listener');
 
-    console.log(`Socket listening at ${address} : ${port}`);
-})
+        // INIT
+        socket.on('listening', () => {
+            const { address, port } = socket.address();
 
-// MESSAGE
-socket.on('message', async(msg, remote) => {
-    console.log(`${remote.address} : ${remote.port} - ${msg}`);
+            console.log(`Socket listening at ${address} : ${port}`);
+        })
 
-    const parsedMsg = parseMessage(msg);
-    if(await msgIsValid(parsedMsg)) handleMessage(parsedMsg);
+        // MESSAGE
+        socket.on('message', async(msg, remote) => {
+            console.log(`${remote.address} : ${remote.port} - ${msg}`);
 
-});
+            const parsedMsg = parseMessage(msg);
+            if(await msgIsValid(parsedMsg)) handleMessage(parsedMsg);
 
-
-// ERROR
-socket.on('error', (error) => {
-    console.log('Error: ' + error);
-    socket.close();
-});
-
-// CLOSE
-socket.on('close', () => console.log('Socket has closed !'));
+        });
 
 
-const { sendMessage } = require('./Sender');
+        // ERROR
+        socket.on('error', (error) => {
+            console.log('Error: ' + error);
+            socket.close();
+        });
 
-// setInterval(sendMessage, 1000);
-sendMessage();
+        // CLOSE
+        socket.on('close', () => console.log('Socket has closed !'));
 
-// Replaces encrypted jwt with decrypted jwt payload
-const msgIsValid = async(msg) => {
-    const { jwt, eventType } = msg;
 
-    try {
-        
-        // Append decrypted JWT
-        const payload = await verifyToken(jwt);
-        msg.jwt = payload;
+        const { sendMessage } = require('./Sender');
 
-        return !!payload && eventType !== undefined;
+        sendMessage();
 
-    }catch(err) {
-        console.log(err);
-        return false;
+        // setInterval(sendMessage, 1000);
+        sendMessage();
+
+        // Replaces encrypted jwt with decrypted jwt payload
+        const msgIsValid = async(msg) => {
+            const { jwt, eventType } = msg;
+
+            try {
+                
+                // Append decrypted JWT
+                const payload = await verifyToken(jwt);
+                msg.jwt = payload;
+
+                return !!payload && eventType !== undefined;
+
+            }catch(err) {
+                console.log(err);
+                return false;
+            }
+        }
+
+        const parseMessage = (msg) => {
+            const jsonMsg = JSON.parse(msg);
+            
+            return jsonMsg;
+        }
     }
-}
-
-const parseMessage = (msg) => {
-    const jsonMsg = JSON.parse(msg);
-    
-    return jsonMsg;
 }

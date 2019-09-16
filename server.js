@@ -12,7 +12,10 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 // DATABASE
-require('./Redis').init();
+// require('./Redis').init();
+
+// SOCKET
+require('./UdpSocket');
 
 // ROUTER
 const router = express.Router();

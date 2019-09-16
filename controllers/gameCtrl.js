@@ -1,14 +1,14 @@
-// SOCKET
-require('../UdpSocket');
-require('../UdpSocket/Listener');
-const a = require('../UdpSocket/Sender');
-
-const { addPlayerToBoard, getCurrentBoardId } = require('../Game/State/BoardManager').init();
+const GameEngine = require('../Game/GameEngine');
 const { createAndSendToken } = require('../util/jwt');
+
+let games = [];
+let currentGameId;
 
 module.exports = {
     init: () => {
         // init
+        const newGame = new GameEngine();
+        games.push(newGame);
 
         return module.exports;
     },

@@ -4,9 +4,11 @@
 const dgram = require('dgram');
 
 const PORT = process.env.PORT || 3002;
-const HOST = '127.0.0.1';
 
 const socket = dgram.createSocket('udp4');
 socket.bind(PORT);
+
+require('./Sender').init(socket);
+require('./Listener').init(socket);
 
 module.exports = socket;
