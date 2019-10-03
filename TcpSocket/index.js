@@ -36,7 +36,7 @@ server.on('connection', (socket) => {
     });
 });
 
-server.listen(PORT, '0.0.0.0', () => console.log(`Tcp Server listening at ${server.address().address} on Port ${server.address().port}`));
+server.listen(PORT, '52.52.199.187', () => console.log(`Tcp Server listening at ${server.address().address} on Port ${server.address().port}`));
 
 function connectToServer(tid, ip) {
     var conn = net.createConnection(23, ip);
