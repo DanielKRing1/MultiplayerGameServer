@@ -29,6 +29,7 @@ module.exports = {
             
             // Once added, send encrypted playerIp and boardId to user
             const token = await getToken(payload, res);
+            console.log(token);
             return token;
             
         }catch(err){
