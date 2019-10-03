@@ -34,7 +34,8 @@ const server = net.createServer((socket) => {
     });
 });
 
-server.listen(PORT, () => console.log(`Tcp Server listening on Port ${PORT}`));
+const { address: ip, port } = server.address();
+server.listen(PORT, () => console.log(`Tcp Server listening at ${ip} on Port ${port}`));
 
 function connectToServer(tid, ip) {
     var conn = net.createConnection(23, ip);
