@@ -6,6 +6,7 @@ module.exports = {
         console.log('Update Player direction');
 
         const { direction } = msg;
+        // id, gameId
         const { ip, boardId } = msg.jwt;
         
         // Get board and player

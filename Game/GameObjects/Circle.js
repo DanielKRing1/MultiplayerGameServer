@@ -1,8 +1,8 @@
 const GameObject = require('./GameObject');
 
 const Circle = class extends GameObject{
-    constructor(id, xPos, yPos, radius) {
-        super(id, xPos, yPos);
+    constructor(xPos, yPos, radius) {
+        super(xPos, yPos);
 
         this.radius = radius;
     }

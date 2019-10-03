@@ -42,8 +42,11 @@ module.exports = {
     },
     verifyToken: async (token) => {
         try{
-            console.log('Verifying');
+            // console.log('Verifying');
+            
+            console.time("verify jwt");
             const payload = await jwt.verify(token, privateKey, signOptions);
+            console.timeEnd("verify jwt");
 
             return payload;
         }catch(err) {

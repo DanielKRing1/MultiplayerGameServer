@@ -18,7 +18,7 @@ module.exports = {
             console.log(`${remote.address} : ${remote.port} - ${msg}`);
 
             const parsedMsg = parseMessage(msg);
-            if(await msgIsValid(parsedMsg)) handleMessage(parsedMsg);
+            if(await msgIsValid(parsedMsg)) handleMessage(parsedMsg, remote);
 
         });
 
@@ -42,6 +42,8 @@ module.exports = {
 
         // Replaces encrypted jwt with decrypted jwt payload
         const msgIsValid = async(msg) => {
+            if(msg.eventType === 'init-player') return true;
+
             const { jwt, eventType } = msg;
 
             try {
