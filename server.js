@@ -16,6 +16,7 @@ app.use(bodyParser.json());
 
 // SOCKET
 require('./UdpSocket');
+require('./TcpSocket');
 
 // ROUTER
 const router = express.Router();

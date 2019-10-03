@@ -5,7 +5,7 @@ const net = require('net');
 
 const { initUser } = require('../controllers/gameCtrl').init();
 
-const PORT = process.env.TCP_PORT || 3003;
+const PORT = 3003 || process.env.TCP_PORT;
 
 const server = net.createServer((socket) => {
 
