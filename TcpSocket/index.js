@@ -9,7 +9,7 @@ const PORT = 3003 || process.env.TCP_PORT;
 
 const server = net.createServer();
 
-server.on('connection', (socket) => {
+server.on('connection', function(socket) {
 
     console.log('Welcome, Provisional Player!');
 
