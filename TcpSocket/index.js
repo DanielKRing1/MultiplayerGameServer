@@ -9,7 +9,7 @@ const PORT = 3003 || process.env.TCP_PORT;
 
 const server = net.createServer();
 
-server.on('connection', function(socket) {
+server.on('connection', (socket) => {
 
     console.log('Welcome, Provisional Player!');
 
@@ -36,7 +36,7 @@ server.on('connection', function(socket) {
     });
 });
 
-server.listen(PORT, '0.0.0.0', () => console.log(`Tcp Server listening at ${server.address().address} on Port ${server.address().port}`));
+server.listen(PORT, () => console.log(`Tcp Server listening at ${server.address().address} on Port ${server.address().port}`));
 
 function connectToServer(tid, ip) {
     var conn = net.createConnection(23, ip);
