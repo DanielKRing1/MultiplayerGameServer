@@ -7,7 +7,9 @@ const { initUser } = require('../controllers/gameCtrl').init();
 
 const PORT = 3003 || process.env.TCP_PORT;
 
-const server = net.createServer((socket) => {
+const server = net.createServer();
+
+server.on('connection', (socket) => {
 
     console.log('Welcome, Provisional Player!');
 
