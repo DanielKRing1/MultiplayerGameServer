@@ -36,6 +36,7 @@ server.on('connection', (socket) => {
     });
 });
 
+console.log(server);
 const { address: ip, port } = server.address();
 server.listen(PORT, () => console.log(`Tcp Server listening at ${ip} on Port ${port}`));
 
