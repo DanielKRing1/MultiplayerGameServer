@@ -1,7 +1,7 @@
 const dgram = require('dgram');
 
 const PORT = 3002;
-const HOST = process.env.HOST;
+const HOST = "104.174.188.93";
 
 let socket;
 console.log('Init Sender');

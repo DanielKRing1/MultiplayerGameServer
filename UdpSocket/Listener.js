@@ -1,6 +1,8 @@
 const { handleMessage } = require('./MessageHandlers');
 const  { verifyToken } = require('../util/jwt');
 
+const { sendMessage } = require('./Sender');
+
 module.exports = {
 
     init: (socket) => {
@@ -17,8 +19,10 @@ module.exports = {
         socket.on('message', async(msg, remote) => {
             console.log(`${remote.address} : ${remote.port} - ${msg}`);
 
-            const parsedMsg = parseMessage(msg);
-            if(await msgIsValid(parsedMsg)) handleMessage(parsedMsg, remote);
+            sendMessage();
+
+            // const parsedMsg = parseMessage(msg);
+            // if(await msgIsValid(parsedMsg)) handleMessage(parsedMsg, remote);
 
         });
 
@@ -32,13 +36,6 @@ module.exports = {
         // CLOSE
         socket.on('close', () => console.log('Socket has closed !'));
 
-
-        const { sendMessage } = require('./Sender');
-
-        sendMessage();
-
-        // setInterval(sendMessage, 1000);
-        sendMessage();
 
         // Replaces encrypted jwt with decrypted jwt payload
         const msgIsValid = async(msg) => {
