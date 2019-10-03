@@ -5,7 +5,7 @@ const net = require('net');
 
 const { initUser } = require('../controllers/gameCtrl').init();
 
-const PORT = 7070 || process.env.TCP_PORT;
+const PORT = 3003 || process.env.TCP_PORT;
 
 const server = net.createServer();
 
@@ -36,7 +36,7 @@ server.on('connection', (socket) => {
     });
 });
 
-server.listen(PORT, '127.0.0.1', () => console.log(`Tcp Server listening at ${server.address().address} on Port ${server.address().port}`));
+server.listen(PORT, () => console.log(`Tcp Server listening at ${server.address().address} on Port ${server.address().port}`));
 
 function connectToServer(tid, ip) {
     var conn = net.createConnection(23, ip);
