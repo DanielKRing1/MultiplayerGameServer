@@ -3,7 +3,7 @@
 
 const dgram = require('dgram');
 
-const PORT = process.env.PORT || 3005;
+const PORT = process.env.PORT || 3002;
 
 const socket = dgram.createSocket('udp4');
 socket.bind(PORT);
