@@ -18,7 +18,8 @@ server.on('connection', (socket) => {
         eventType: 'generated-jwt',
         testString: 'This is a test string'
     }
-    socket.write(data);
+    const bufferData = Buffer.from(JSON.stringify(data));
+    socket.write(bufferData);
 
     socket.on('data', (data) => {
         console.log('Logging data--------------');
