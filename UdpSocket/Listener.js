@@ -12,7 +12,7 @@ module.exports = {
         socket.on('listening', () => {
             const { address, port } = socket.address();
 
-            console.log(`Socket listening at ${address} : ${port}`);
+            console.log(`UDP Socket listening at ${address} : ${port}`);
         })
 
         // MESSAGE

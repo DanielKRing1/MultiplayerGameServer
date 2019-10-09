@@ -13,7 +13,12 @@ server.on('connection', (socket) => {
 
     console.log('Welcome, Provisional Player!');
 
-    socket.write('Welcome, Provisional Player!');
+    const data = {
+        jwt: 'test-jwt',
+        eventType: 'generated-jwt',
+        testString: 'This is a test string'
+    }
+    socket.write(data);
 
     socket.on('data', (data) => {
         console.log('Logging data--------------');
