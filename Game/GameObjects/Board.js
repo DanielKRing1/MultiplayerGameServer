@@ -20,7 +20,7 @@ const Board = class {
 
     addProvisionalPlayer(socket) {
 
-        return createProvisionalPlayer(socket);
+        return createProvisionalPlayer(this.players, socket);
     }
     completeProvisionalPlayer(id, ip, port) {
         const player = this.provisionalPlayers[id];
@@ -56,35 +56,38 @@ const Board = class {
 
         return playerList;
     }
+
+
+    createProvisionalPlayer(socket) {
+        const xPos = randInt(0, this.width);
+        const yPos = randInt(0, this.height);
+    
+        const player = new Player(socket, xPos, yPos, 0, 0, 1, 'test');
+    
+        console.log(this.provisionalPlayers)
+        console.log(this.players)
+    
+        const id = player.id;
+        this.provisionalPlayers[id] = player;
+        this.provisionalPlayerCount++;
+    
+        return player;
+    }
+    trackPlayer(player, ip, port) {
+        player.addUdpAddress(ip, port);
+    
+        const id = player.id;
+        this.players[id] = player;
+        this.playerCount++;
+    }
+    removeProvisionalPlayer(player) {
+        const id = player.id;
+        delete this.provisionalPlayers[id];
+        this.provisionalPlayerCount--;
+    }
 }
 
-const createProvisionalPlayer = (socket) => {
-    const xPos = randInt(0, this.width);
-    const yPos = randInt(0, this.height);
 
-    const player = new Player(socket, xPos, yPos, 0, 0, 1, 'test');
-
-    console.log(this.provisionalPlayers)
-    console.log(this.players)
-
-    const id = player.id;
-    this.provisionalPlayers[id] = player;
-    this.provisionalPlayerCount++;
-
-    return player;
-}
-const trackPlayer = (player, ip, port) => {
-    player.addUdpAddress(ip, port);
-
-    const id = player.id;
-    this.players[id] = player;
-    this.playerCount++;
-}
-const removeProvisionalPlayer = (player) => {
-    const id = player.id;
-    delete this.provisionalPlayers[id];
-    this.provisionalPlayerCount--;
-}
 
 // Static
 // Board.players = getClient();
