@@ -20,13 +20,13 @@ const Board = class {
 
     addProvisionalPlayer(socket) {
 
-        return createProvisionalPlayer(socket);
+        return this.createProvisionalPlayer(socket);
     }
     completeProvisionalPlayer(id, ip, port) {
         const player = this.provisionalPlayers[id];
 
-        trackPlayer(player, ip, port);
-        removeProvisionalPlayer(player);
+        this.trackPlayer(player, ip, port);
+        this.removeProvisionalPlayer(player);
         
         return player;
     }
