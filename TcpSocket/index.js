@@ -47,8 +47,8 @@ server.on('connection', (socket) => {
 
 server.listen(PORT, () => console.log(`Tcp Server listening at ${server.address().address} on Port ${server.address().port}`));
 
-const initPlayer = (socket) => {
-    const jwt = onInitPlayer(socket);
+const initPlayer = async (socket) => {
+    const jwt = await onInitPlayer(socket);
 
     console.log('2. START/END ---- Return Jwt');
 
