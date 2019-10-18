@@ -19,6 +19,8 @@ server.on('connection', (socket) => {
 
     socket.on('data', (data) => {
         console.log('Logging data--------------');
+        
+        data = parseMessage(data);
         console.log(data);
 
         switch(data.eventType){
@@ -59,4 +61,10 @@ const initPlayer = async (socket) => {
     console.log(data);
     const bufferData = Buffer.from(JSON.stringify(data));
     socket.write(bufferData);
+}
+
+const parseMessage = (msg) => {
+    const jsonMsg = JSON.parse(msg);
+    
+    return jsonMsg;
 }
