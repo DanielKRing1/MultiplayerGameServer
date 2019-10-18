@@ -1,9 +1,6 @@
 const uuidv1 = require('uuid/v1');
 // const { getClient } = require('../../Redis');
 
-const ProvisionalBoard = require('./ProvisionalBoard');
-
-
 const Player = require('./Player');
 const { randInt } = require('../../util/methods');
 const { boardWidth, boardHeight, playersPerBoard } = require('../../util/constants');
@@ -16,37 +13,73 @@ const Board = class {
         this.width = boardWidth;
         
         this.players = {};
+        this.provisionalPlayers = {};
         this.playerCount = 0;
-
-        this.provisionalBoard = new ProvisionalBoard();
+        this.provisionalPlayerCount = 0;
     }
 
-    addNewPlayer(socket) {
-        return this.provisionalBoard.createNewPlayer(socket);
+    addProvisionalPlayer(socket) {
+        return createProvisionalPlayer(socket);
     }
-    connectProvisionalPlayer(playerId, ip, port) {
-        const xPos = randInt(0, this.width);
-        const yPos = randInt(0, this.height);
+    completeProvisionalPlayer(id, ip, port) {
+        const player = this.provisionalPlayers[id];
 
-        const player = this.provisionalBoard.removePlayer(playerId);
-        player.connect(ip, port, xPos, yPos, 0, 0, 1, 'a');
-        addPlayer(player);
+        trackPlayer(player, ip, port);
+        removeProvisionalPlayer(player);
+        
+        return player;
+    }
+    removePlayer(id){
+        delete this.players[id];
+        this.playerCount--;
     }
 
     isFull() {
-        return this.playerCount + this.provisionalBoard.playerCount >= playersPerBoard;
+        return this.playerCount + this.provisionalPlayerCount >= playersPerBoard;
     }
 
+    getPlayer(id) {
+        return this.players[id];
+    }
+    getPlayers() {
+        return this.players;
+    }
+    getPlayerList(){
+        let playerList = [];
 
-    getProvisionalPlayer(playerId) {
-        return this.provisionalBoard.getPlayer(playerId);
+        const playerKeys = this.players.keys();
+        playerKeys.forEach(key => {
+            const player = this.players[key];
+            playerList.push(player);
+        });
+
+        return playerList;
     }
 }
 
-const addPlayer = (player) => {
+const createProvisionalPlayer = (socket) => {
+    const xPos = randInt(0, this.width);
+    const yPos = randInt(0, this.height);
+
+    const player = new Player(socket, xPos, yPos, 0, 0, 1, 'test');
+
+    const id = player.id;
+    this.provisionalPlayers[id] = player;
+    this.provisionalPlayerCount++;
+
+    return player;
+}
+const trackPlayer = (player, ip, port) => {
+    player.addUdpAddress(ip, port);
+
     const id = player.id;
     this.players[id] = player;
     this.playerCount++;
+}
+const removeProvisionalPlayer = (player) => {
+    const id = player.id;
+    delete this.provisionalPlayers[id];
+    this.provisionalPlayerCount--;
 }
 
 // Static

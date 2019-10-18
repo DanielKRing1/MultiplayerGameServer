@@ -13,10 +13,10 @@ module.exports = {
     },
 
     // Return JWT token to TCP, to send to user
-    initUser: async(socket) => {
+    onInitPlayer: async(socket) => {
         const game = getNextOpenGame();
+        const player = game.board.addProvisionalPlayer(socket);
 
-        const player = game.board.addNewPlayer(socket);
         const playerData = {
             id: player.id,
             gameId: game.id
@@ -28,13 +28,23 @@ module.exports = {
             const payload = playerData;
             
             // Once added, send encrypted playerIp and boardId to user
-            const token = await getToken(payload, res);
+            const token = await getToken(payload);
             console.log(token);
             return token;
             
         }catch(err){
             console.log(err);
         }
+    },
+
+    onCompletePlayer: (id, gameId, ip, port) => {
+        const game = this.games[gameId];
+
+        return game.board.completeProvisionalPlayer(id, ip, port);
+    },
+
+    onRemovePlayer: async({ id, gameId }) => {
+        // Remove Player
     },
 
     // Create JWT for user to 
@@ -62,7 +72,7 @@ const getAllOpenGames = () => {
     });
 
     // None open
-    if(openGames.length === 0) openGames = undefined;
+    // if(openGames.length === 0) openGames = undefined;
 
     return openGames;
 }
@@ -77,5 +87,5 @@ const getNextOpenGame = () => {
 const getFirstOpenGame = () => {
     const openGames = getAllOpenGames();
 
-    return openGames ? openGames[0] : createNewGame();
+    return openGames.length > 0 ? openGames[0] : createNewGame();
 }

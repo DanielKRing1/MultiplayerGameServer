@@ -19,10 +19,8 @@ module.exports = {
         socket.on('message', async(msg, remote) => {
             console.log(`${remote.address} : ${remote.port} - ${msg}`);
 
-            sendMessage();
-
-            // const parsedMsg = parseMessage(msg);
-            // if(await msgIsValid(parsedMsg)) handleMessage(parsedMsg, remote);
+            const parsedMsg = parseMessage(msg);
+            if(await msgIsValid(parsedMsg)) handleMessage(parsedMsg, remote);
 
         });
 
@@ -39,17 +37,15 @@ module.exports = {
 
         // Replaces encrypted jwt with decrypted jwt payload
         const msgIsValid = async(msg) => {
-            if(msg.eventType === 'init-player') return true;
-
             const { jwt, eventType } = msg;
 
             try {
                 
                 // Append decrypted JWT
-                const payload = await verifyToken(jwt);
-                msg.jwt = payload;
+                const user = await verifyToken(jwt);
+                msg.user = user;
 
-                return !!payload && eventType !== undefined;
+                return !!user && eventType !== undefined;
 
             }catch(err) {
                 console.log(err);

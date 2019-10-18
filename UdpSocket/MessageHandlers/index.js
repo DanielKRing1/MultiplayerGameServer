@@ -1,4 +1,4 @@
-const { connectToUdpServer } = require('./Player');
+const { completePlayer } = require('./Player');
 const { updatePlayerDirection } = require('./Movement');
 
 module.exports = {
@@ -6,8 +6,8 @@ module.exports = {
         const { eventType } = msg;
 
         switch(eventType) {
-            case 'connect-to-udp-server':
-                connectToUdpServer(msg, remote);
+            case 'init-udp':
+                completePlayer(msg, remote);
                 break;
 
             case 'update-direction':
