@@ -56,6 +56,7 @@ const initPlayer = (socket) => {
         jwt,
         eventType: 'connected-main-tcp'
     }
+    console.log(data);
     const bufferData = Buffer.from(JSON.stringify(data));
     socket.write(bufferData);
 }
