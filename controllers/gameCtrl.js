@@ -37,7 +37,7 @@ module.exports = {
     },
 
     onCompletePlayer: (id, gameId, ip, port) => {
-        const game = this.games[gameId];
+        const game = games[gameId];
 
         return game.board.completeProvisionalPlayer(id, ip, port);
     },
@@ -49,7 +49,7 @@ module.exports = {
     // Create JWT for user to 
     connectPlayerToGame: (playerId, gameId, ip, port) => {
         // ADD PLAYER TO BOARD
-        const game = this.games[gameId];
+        const game = games[gameId];
         game.connectProvisionalPlayer(playerId, ip, port);
     },
 }
