@@ -24,6 +24,7 @@ const Board = class {
     }
     completeProvisionalPlayer(id, ip, port) {
         const player = this.provisionalPlayers[id];
+        console.log(player);
 
         this.trackPlayer(player, ip, port);
         this.removeProvisionalPlayer(player);
@@ -71,7 +72,6 @@ const Board = class {
         return player;
     }
     trackPlayer(player, ip, port) {
-        console.log(player);
         player.addUdpAddress(ip, port);
     
         const id = player.id;
