@@ -17,15 +17,15 @@ module.exports = {
         const game = getNextOpenGame();
         const player = game.board.addProvisionalPlayer(socket);
 
-        const playerData = {
+        const user = {
             id: player.id,
             gameId: game.id
         }
-        socket.player = playerData;
-
+        
         // RETURN JWT TO USER
         try{
-            const payload = playerData;
+            socket.user = user;
+            const payload = user;
             
             // Once added, send encrypted playerIp and boardId to user
             const token = await getToken(payload);

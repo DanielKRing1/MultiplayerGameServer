@@ -11,7 +11,7 @@ const server = net.createServer();
 
 server.on('connection', (socket) => {
 
-    console.log('Welcome, Provisional Player!');
+    console.log('1. START/END ---- Connect Tcp Socket');
 
     // Respond with success
     // Return jwt to client
@@ -29,7 +29,6 @@ server.on('connection', (socket) => {
     socket.on('end', async () => {
         try{
 
-            const token = await initUser(socket);
             if(token){
                 socket.write(token);
             }else{
@@ -50,6 +49,8 @@ server.listen(PORT, () => console.log(`Tcp Server listening at ${server.address(
 
 const initPlayer = (socket) => {
     const jwt = onInitPlayer(socket);
+
+    console.log('2. START/END ---- Return Jwt');
 
     const data = {
         jwt,

@@ -19,6 +19,7 @@ const Board = class {
     }
 
     addProvisionalPlayer(socket) {
+
         return createProvisionalPlayer(socket);
     }
     completeProvisionalPlayer(id, ip, port) {
