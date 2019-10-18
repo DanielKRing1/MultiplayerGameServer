@@ -20,7 +20,7 @@ const Board = class {
 
     addProvisionalPlayer(socket) {
 
-        return createProvisionalPlayer(this.players, socket);
+        return createProvisionalPlayer(socket);
     }
     completeProvisionalPlayer(id, ip, port) {
         const player = this.provisionalPlayers[id];
