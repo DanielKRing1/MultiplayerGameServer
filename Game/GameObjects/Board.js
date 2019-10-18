@@ -64,6 +64,9 @@ const createProvisionalPlayer = (socket) => {
 
     const player = new Player(socket, xPos, yPos, 0, 0, 1, 'test');
 
+    console.log(this.provisionalPlayers)
+    console.log(this.players)
+
     const id = player.id;
     this.provisionalPlayers[id] = player;
     this.provisionalPlayerCount++;
