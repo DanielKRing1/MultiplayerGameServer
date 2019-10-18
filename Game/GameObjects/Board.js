@@ -71,6 +71,7 @@ const Board = class {
         return player;
     }
     trackPlayer(player, ip, port) {
+        console.log(player);
         player.addUdpAddress(ip, port);
     
         const id = player.id;
