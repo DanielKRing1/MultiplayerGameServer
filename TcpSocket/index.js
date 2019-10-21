@@ -15,7 +15,8 @@ server.on('connection', (socket) => {
 
     // Respond with success
     // Return jwt to client
-    initPlayer(socket);
+    const user = initPlayer(socket);
+    socket.user = user;
 
     let unterminatedMessage = '';
     socket.on('data', (data) => {
@@ -37,7 +38,7 @@ server.on('connection', (socket) => {
 
     socket.on('close', () => {
         console.log("Closed Tcp Socket------------------------------------");
-        removePlayer(socket.player);
+        onRemovePlayer(socket.user);
     });
 
     socket.on('error', (err) => {

@@ -24,7 +24,6 @@ module.exports = {
         
         // RETURN JWT TO USER
         try{
-            socket.user = user;
             const payload = user;
             
             // Once added, send encrypted playerIp and boardId to user
@@ -34,6 +33,8 @@ module.exports = {
         }catch(err){
             console.log(err);
         }
+
+        return user;
     },
 
     onCompletePlayer: (id, gameId, ip, port) => {
@@ -44,6 +45,11 @@ module.exports = {
 
     onRemovePlayer: async({ id, gameId }) => {
         // Remove Player
+        console.log("Removing player");
+        console.log(id);
+        console.log(gameId);
+
+        this.games[gameId].board.removePlayer(id);
     },
 
     // Create JWT for user to 
