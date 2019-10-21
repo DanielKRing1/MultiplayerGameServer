@@ -62,7 +62,7 @@ const mergeFragments = (currentMsg, data) => {
 
     data = parseToString(data);
     console.log(data);
-    const dataFragments = data.split('\END');
+    const dataFragments = data.split('\\END');
     const fragmentCount = dataFragments.length;
 
     // Handle Intermediate Fragments
