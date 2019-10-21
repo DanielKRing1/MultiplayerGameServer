@@ -60,7 +60,7 @@ const initPlayer = async (socket) => {
 const mergeFragments = (currentMsg, data) => {
     let message = currentMsg;
 
-    data = parseMessage(data);
+    data = parseToString(data);
     console.log(data);
     const dataFragments = data.split('\END');
     const fragmentCount = dataFragments.length;
@@ -81,7 +81,7 @@ const mergeFragments = (currentMsg, data) => {
 }
 const handleMessage = (msg) => {
     console.log(msg);
-    const json = parseMessage(msg);
+    const json = parseToJson(msg);
 
     switch(json.eventType){
         case 'update-direction':
@@ -91,7 +91,12 @@ const handleMessage = (msg) => {
     }
 }
 
-const parseMessage = (msg) => {
+const parseToString = (msg) => {
+    const stringMsg = msg.toString();
+
+    return stringMsg;
+}
+const parseToJson = (msg) => {
     const jsonMsg = JSON.parse(msg);
     
     return jsonMsg;
