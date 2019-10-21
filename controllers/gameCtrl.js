@@ -48,7 +48,7 @@ module.exports = {
         // Remove Player
         console.log("Removing player");
 
-        this.games[gameId].board.removePlayer(id);
+        games[gameId].board.removePlayer(id);
     },
 
     // Create JWT for user to 
