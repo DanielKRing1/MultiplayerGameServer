@@ -43,11 +43,10 @@ module.exports = {
         return game.board.completeProvisionalPlayer(id, ip, port);
     },
 
-    onRemovePlayer: async({ id, gameId }) => {
+    onRemovePlayer: async(user) => {
         // Remove Player
         console.log("Removing player");
-        console.log(id);
-        console.log(gameId);
+        console.log(user);
 
         this.games[gameId].board.removePlayer(id);
     },
