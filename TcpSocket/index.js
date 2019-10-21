@@ -60,6 +60,7 @@ const initPlayer = async (socket) => {
 const mergeFragments = (currentMsg, data) => {
     let message = currentMsg;
 
+    data = parseMessage(data);
     console.log(data);
     const dataFragments = data.split('\END');
     const fragmentCount = dataFragments.length;
