@@ -17,25 +17,13 @@ server.on('connection', (socket) => {
     // Return jwt to client
     initPlayer(socket);
 
-    let message = '';
+    let unterminatedMessage = '';
     socket.on('data', (data) => {
         console.log('Tcp Socket on data--------------');
         
-        const dataFragments = data.split('\END');
-        const fragmentCount = dataFragments.length;
+        unterminatedMessage = mergeFragments(unterminatedMessage, data);
+        console.log(`Unfinished message: '${unterminatedMessage}'`);
 
-        // Handle Intermediate Fragments
-        for(let i = 0; i < fragmentCount - 1; i++){
-            const fragment = dataFragments[i];
-            message += fragment;
-            handleMessage(fragment);
-
-            message = '';
-        }
-
-        // Handle Last Fragment
-        message += dataFragments[fragmentCount - 1];
-        console.log(`Unfinished message: '${message}'`);
     });
 
     socket.on('end', async () => {
@@ -69,6 +57,27 @@ const initPlayer = async (socket) => {
     socket.write(bufferData);
 }
 
+const mergeFragments = (currentMsg, data) => {
+    let message = currentMsg;
+
+    console.log(data);
+    const dataFragments = data.split('\END');
+    const fragmentCount = dataFragments.length;
+
+    // Handle Intermediate Fragments
+    for(let i = 0; i < fragmentCount - 1; i++){
+        const fragment = dataFragments[i];
+        message += fragment;
+        handleMessage(message);
+
+        message = '';
+    }
+
+    // Handle Last Fragment
+    message += dataFragments[fragmentCount - 1];
+
+    return message;
+}
 const handleMessage = (msg) => {
     console.log(msg);
     const json = parseMessage(msg);
