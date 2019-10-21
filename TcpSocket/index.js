@@ -15,8 +15,7 @@ server.on('connection', (socket) => {
 
     // Respond with success
     // Return jwt to client
-    const user = initPlayer(socket);
-    socket.user = user;
+    initPlayer(socket);
 
     let unterminatedMessage = '';
     socket.on('data', (data) => {
@@ -38,6 +37,7 @@ server.on('connection', (socket) => {
 
     socket.on('close', () => {
         console.log("Closed Tcp Socket------------------------------------");
+        console.log(socket.user);
         onRemovePlayer(socket.user);
     });
 
@@ -49,10 +49,15 @@ server.on('connection', (socket) => {
 server.listen(PORT, () => console.log(`Tcp Server listening at ${server.address().address} on Port ${server.address().port}`));
 
 const initPlayer = async (socket) => {
-    const jwt = await onInitPlayer(socket);
-
+    const { user, jwt } = await onInitPlayer(socket);
+    
+    // Store user data on socket
+    socket.user = user;
+    
+    sendJwtToUser(socket, jwt);
+}
+const sendJwtToUser = (socket, jwt) => {
     console.log('2. START/END ---- Return Jwt');
-
     const data = {
         jwt,
         eventType: 'connected-main-tcp'

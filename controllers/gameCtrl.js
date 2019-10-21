@@ -28,13 +28,14 @@ module.exports = {
             
             // Once added, send encrypted playerIp and boardId to user
             const token = await getToken(payload);
-            return token;
+            return {
+                user,
+                jwt: token
+            };
             
         }catch(err){
             console.log(err);
         }
-
-        return user;
     },
 
     onCompletePlayer: (id, gameId, ip, port) => {
