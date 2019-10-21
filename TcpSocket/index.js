@@ -17,26 +17,30 @@ server.on('connection', (socket) => {
     // Return jwt to client
     initPlayer(socket);
 
+    let message = '';
     socket.on('data', (data) => {
-        console.log('Logging data--------------');
+        console.log('Tcp Socket on data--------------');
         
-        data = parseMessage(data);
-        console.log(data);
+        const dataFragments = data.split('\END');
+        const fragmentCount = dataFragments.length;
 
-        switch(data.eventType){
-            
+        // Handle Intermediate Fragments
+        for(let i = 0; i < fragmentCount - 1; i++){
+            const fragment = dataFragments[i];
+            message += fragment;
+            handleMessage(fragment);
+
+            message = '';
         }
+
+        // Handle Last Fragment
+        message += dataFragments[fragmentCount - 1];
+        console.log(`Unfinished message: '${message}'`);
     });
 
     socket.on('end', async () => {
         console.log("Enddddddd-----------------------------");
         try{
-
-            if(token){
-                socket.write(token);
-            }else{
-                console.log('Did not receive a Token to give User');
-            }
 
         }catch(err) {
             console.log(err);
@@ -44,6 +48,7 @@ server.on('connection', (socket) => {
     });
 
     socket.on('close', () => {
+        console.log("Closed Tcp Socket------------------------------------");
         removePlayer(socket.player);
     });
 });
@@ -62,6 +67,18 @@ const initPlayer = async (socket) => {
     console.log(data);
     const bufferData = Buffer.from(JSON.stringify(data));
     socket.write(bufferData);
+}
+
+const handleMessage = (msg) => {
+    console.log(msg);
+    const json = parseMessage(msg);
+
+    switch(json.eventType){
+        case 'update-direction':
+            console.log("Update Direction");
+            console.log(json.direction);
+            break;
+    }
 }
 
 const parseMessage = (msg) => {
