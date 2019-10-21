@@ -29,6 +29,7 @@ server.on('connection', (socket) => {
     });
 
     socket.on('end', async () => {
+        console.log("Enddddddd-----------------------------");
         try{
 
             if(token){
