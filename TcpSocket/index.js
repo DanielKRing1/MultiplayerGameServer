@@ -68,6 +68,8 @@ const mergeFragments = (currentMsg, data) => {
     // Handle Intermediate Fragments
     for(let i = 0; i < fragmentCount - 1; i++){
         const fragment = dataFragments[i];
+        console.log("Handling fragment");
+        console.log(fragment);
         message += fragment;
         handleMessage(message);
 
