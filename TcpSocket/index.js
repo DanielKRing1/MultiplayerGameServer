@@ -68,8 +68,6 @@ const mergeFragments = (currentMsg, data) => {
     // Handle Intermediate Fragments
     for(let i = 0; i < fragmentCount - 1; i++){
         const fragment = dataFragments[i];
-        console.log("Handling fragment");
-        console.log(fragment);
         message += fragment;
         handleMessage(message);
 
@@ -82,7 +80,6 @@ const mergeFragments = (currentMsg, data) => {
     return message;
 }
 const handleMessage = (msg) => {
-    console.log(msg);
     const json = parseToJson(msg);
 
     switch(json.eventType){
