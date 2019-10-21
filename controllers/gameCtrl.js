@@ -46,7 +46,7 @@ module.exports = {
 
     onRemovePlayer: async({ id, gameId }) => {
         // Remove Player
-        console.log("Removing player");
+        console.log("Removing player...");
 
         games[gameId].board.removePlayer(id);
     },

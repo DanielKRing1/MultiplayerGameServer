@@ -31,8 +31,6 @@ const Board = class {
         return player;
     }
     removePlayer(id){
-        console.log("Logging player");
-        console.log(this.players[id]);
         delete this.players[id];
         this.playerCount--;
         console.log("Removed Player");
