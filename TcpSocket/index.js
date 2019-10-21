@@ -39,6 +39,10 @@ server.on('connection', (socket) => {
         console.log("Closed Tcp Socket------------------------------------");
         removePlayer(socket.player);
     });
+
+    socket.on('error', (err) => {
+        console.log(err);
+    });
 });
 
 server.listen(PORT, () => console.log(`Tcp Server listening at ${server.address().address} on Port ${server.address().port}`));
