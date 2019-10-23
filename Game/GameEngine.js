@@ -27,7 +27,7 @@ let GameEngine = class {
     start() {
         console.log("Start");
         lastUpdate = Date.now();
-        this.updatePointer = setInterval(update, 1000 / updateFPS);
+        this.updatePointer = setInterval(() => update(this.board), 1000 / updateFPS);
     }
 
     stop() {
@@ -45,8 +45,8 @@ let GameEngine = class {
 
 module.exports = GameEngine;
 
-const update = () => {
-    const players = this.board.getPlayers();
+const update = (board) => {
+    const players = board.getPlayers();
 
     updatePlayerPositions(players);
     sendBoardToClients(players);
