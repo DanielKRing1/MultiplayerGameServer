@@ -56,7 +56,10 @@ const updatePlayerPositions = (players) => {
     const elapsedTime = now - lastUpdate;
     lastUpdate = now;
 
+    console.log(1);
     Object.keys(players).forEach(key => {
+    console.log(2);
+
         console.log(key);
         const player = players[key];
         console.log(player);
@@ -66,6 +69,7 @@ const updatePlayerPositions = (players) => {
 const sendBoardToClients = (player) => {
     // const bufferData = Buffer.from(this.board);
 
+    console.log(3);
     sendMessage(player.ip, player.port, this.board);
     // players.forEach(player => {
     //     player.socket.write(bufferData);
