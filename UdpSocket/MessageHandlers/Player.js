@@ -8,6 +8,7 @@ module.exports = {
         const player = onCompletePlayer(id, gameId, ip, port);
 
         console.log('3. START ---- Connect Udp / Complete Player');
+        console.log(remote);
         const socket = player.socket;
         const data = {
             eventType: 'connected-main-udp'

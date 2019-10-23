@@ -14,7 +14,7 @@ module.exports = {
         socket.send(message, 0, message.length, port, ip, (err, bytes) => {
             if(err) throw err;  
 
-            // console.log(`UDP message sent to ${ip} : ${port} : ${bytes}`);
+            console.log(`UDP message sent to ${ip} : ${port} : ${bytes}`);
         });
     }
 }
