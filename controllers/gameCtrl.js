@@ -64,6 +64,8 @@ const createNewGame = () => {
     games[newGame.id] = newGame;
     currentGameId = newGame.id;
 
+    newGame.start();
+
     return newGame;
 }
 const getCurrentGame = () => games[currentGameId];
