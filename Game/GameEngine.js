@@ -73,7 +73,7 @@ const sendBoardToClients = (players) => {
     Object.keys(players).forEach(key => {
         const player = players[key];
         sendMessage(player.ip, player.port, this.board);
-    }
+    });
     // players.forEach(player => {
     //     player.socket.write(bufferData);
     // });  
