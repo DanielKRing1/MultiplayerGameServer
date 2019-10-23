@@ -62,9 +62,9 @@ const updatePlayerPositions = (players) => {
     });
 }
 const sendBoardToClients = () => {
-    const bufferData = Buffer.from(this.board);
+    // const bufferData = Buffer.from(this.board);
 
-    sendMessage(player.ip, player.port, bufferData);
+    sendMessage(player.ip, player.port, this.board);
     // players.forEach(player => {
     //     player.socket.write(bufferData);
     // });  
