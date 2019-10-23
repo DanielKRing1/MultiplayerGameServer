@@ -27,13 +27,13 @@ let GameEngine = class {
     start() {
         console.log("Start");
         lastUpdate = Date.now();
-        updatePointer = setInterval(update, 1000 / updateFPS);
+        this.updatePointer = setInterval(update, 1000 / updateFPS);
     }
 
     stop() {
-        if(updatePointer) {
-            clearInterval(updatePointer);
-            updatePointer = undefined;
+        if(this.updatePointer) {
+            clearInterval(this.updatePointer);
+            this.updatePointer = undefined;
         }
     }
 
