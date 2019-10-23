@@ -28,8 +28,8 @@ const Player = class extends Circle {
         }
 
 
-        this.position.x += delta.x;
-        this.position.y += delta.y;
+        this.pos.x += delta.x;
+        this.pos.y += delta.y;
     }
 }
 
