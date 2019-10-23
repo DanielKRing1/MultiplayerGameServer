@@ -61,7 +61,7 @@ const updatePlayerPositions = (players) => {
         player.updatePosition(elapsedTime)
     });
 }
-const sendBoardToClients = () => {
+const sendBoardToClients = (player) => {
     // const bufferData = Buffer.from(this.board);
 
     sendMessage(player.ip, player.port, this.board);
