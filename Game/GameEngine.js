@@ -6,9 +6,6 @@ const { updateFPS } = require('../util/constants');
 
 const Board = require('./GameObjects/Board');
 
-
-const { addPlayerToBoard, getCurrentBoardId } = require('../Game/State/BoardManager').init();
-
 let lastUpdate;
 
 let GameEngine = class {
@@ -28,6 +25,7 @@ let GameEngine = class {
     }
 
     start() {
+        console.log("Start");
         lastUpdate = Date.now();
         updatePointer = setInterval(update, 1000 / updateFPS);
     }
@@ -65,7 +63,8 @@ const updatePlayerPositions = (players) => {
 const sendBoardToClients = () => {
     const bufferData = Buffer.from(this.board);
 
-    players.forEach(player => {
-        player.socket.write(bufferData);
-    });  
+    sendMessage(player.ip, player.port, bufferData);
+    // players.forEach(player => {
+    //     player.socket.write(bufferData);
+    // });  
 }

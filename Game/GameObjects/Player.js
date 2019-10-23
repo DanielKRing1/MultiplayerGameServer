@@ -20,10 +20,13 @@ const Player = class extends Circle {
     }
 
     updatePosition(elapsedTime){
+        console.log("Update position");
+        
         const delta = {
             x: elapsedTime * xDir,
             y: elapsedTime * yDir
         }
+
 
         this.position.x += delta.x;
         this.position.y += delta.y;
