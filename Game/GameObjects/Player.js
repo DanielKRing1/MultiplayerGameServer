@@ -3,8 +3,7 @@ const Circle = require('./Circle');
 const Player = class extends Circle {
     constructor(socket, xPos, yPos, xDir, yDir, radius, team) {
         super(xPos, yPos, radius);
-        console.log(xPos)
-        console.log(yPos)
+        console.log(this.pos);
 
 
         this.socket = socket;
