@@ -29,6 +29,17 @@ const Player = class extends Circle {
         this.pos.x += delta.x;
         this.pos.y += delta.y;
     }
+
+    getPublicData(){
+        return {
+            xPos: this.xPos,
+            yPos: this.yPos,
+            xDir: this.xDir,
+            yDir: this.yDir,
+            radius: this.radius,
+            team: this.team
+        }
+    }
 }
 
 module.exports = Player;

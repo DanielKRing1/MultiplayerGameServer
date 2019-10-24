@@ -49,7 +49,7 @@ const update = (board) => {
     const players = board.getPlayers();
 
     updatePlayerPositions(players);
-    sendBoardToClients(players);
+    sendPlayersToClients(players, board);
 }
 const updatePlayerPositions = (players) => {
     const now = Date.now;
@@ -61,13 +61,14 @@ const updatePlayerPositions = (players) => {
         player.updatePosition(elapsedTime)
     });
 }
-const sendBoardToClients = (players) => {
+const sendPlayersToClients = (players, board) => {
     // const bufferData = Buffer.from(this.board);
 
     Object.keys(players).forEach(key => {
+        const publicPlayerData = board.getPublicPlayerData();
         const msg = {
             eventType: 'receive-board',
-            players: players
+            players: publicPlayerData
         }
 
         const player = players[key];
