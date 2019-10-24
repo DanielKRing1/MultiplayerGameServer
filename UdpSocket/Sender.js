@@ -10,6 +10,8 @@ module.exports = {
     init: (s) => socket = s,
     sendMessage: (ip, port, msg) => {
 
+        msg = JSON.stringify(msg);
+
         socket.send(msg, 0, msg.length, port, ip, (err, bytes) => {
             if(err) throw err;  
 
