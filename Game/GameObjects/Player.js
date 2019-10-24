@@ -29,7 +29,7 @@ const Player = class extends Circle {
 
 
         console.log(this.pos);
-        console.log(delta);
+        console.log(elapsedTime);
 
         this.pos.x += delta.x;
         this.pos.y += delta.y;
