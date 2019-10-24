@@ -32,10 +32,8 @@ const Player = class extends Circle {
 
     getPublicData(){
         return {
-            xPos: this.xPos,
-            yPos: this.yPos,
-            xDir: this.xDir,
-            yDir: this.yDir,
+            pos: this.pos,
+            direction: this.direction,
             radius: this.radius,
             team: this.team
         }
