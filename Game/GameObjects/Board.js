@@ -47,15 +47,16 @@ const Board = class {
         return this.players;
     }
     getPublicPlayerData(){
-        let msg = {};
+        let publicPlayerData = [];
 
         Object.keys(this.players).forEach(playerId => {
             const player = this.players[playerId];
 
-            msg[playerId] = player.getPublicData();
+            const publicData = player.getPublicData();
+            publicPlayerData.push(publicData);
         });
 
-        return msg;
+        return publicPlayerData;
     }
     getPlayerList(){
         let playerList = [];
