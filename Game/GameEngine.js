@@ -52,12 +52,9 @@ const update = (board) => {
     sendPlayersToClients(players, board);
 }
 const updatePlayerPositions = (players) => {
-    const now = Date.now;
+    const now = Date.now();
     const elapsedTime = now - lastUpdate;
     lastUpdate = now;
-
-    console.log(lastUpdate)
-    console.log(now);
 
     Object.keys(players).forEach(key => {
         const player = players[key];
