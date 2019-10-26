@@ -22,6 +22,7 @@ const Player = class extends Circle {
     }
 
     update(update){
+        console.log(update);
         Object.assign(this, update);
     }
 
