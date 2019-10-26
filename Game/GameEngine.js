@@ -64,7 +64,11 @@ const updatePlayerPositions = (players) => {
         const player = players[key];
         player.updatePosition(elapsedTime)
     });
-    lastUpdate = now;
+    setLastUpdate();
+}
+const setLastUpdate = () => {
+    console.log("Set Last Update");
+    lastUpdate = new Date();
 }
 const sendPlayersToClients = (players, board) => {
     // const bufferData = Buffer.from(this.board);
