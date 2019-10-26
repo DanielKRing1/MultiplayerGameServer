@@ -4,6 +4,7 @@
 const net = require('net');
 
 const { handleMessage } = require('./MessageHandlers');
+console.log("here")
 const { onInitPlayer, onRemovePlayer } = require('../controllers/gameCtrl').init();
 
 const PORT = 3003 || process.env.TCP_PORT;
