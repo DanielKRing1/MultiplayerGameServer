@@ -5,7 +5,11 @@ module.exports = {
         console.log("Updating Direction...");
     
         // Ensure Unit Vector
-        const direction = Math.sqrt(json.direction.x*json.direction.x + json.direction.y*json.direction.y);
+        const magnitude = Math.sqrt(json.direction.x*json.direction.x + json.direction.y*json.direction.y);
+        const direction = {
+            x: json.direction.x / magnitude,
+            y: json.direction.y / magnitude
+        }
         const update = {
             direction
         }
