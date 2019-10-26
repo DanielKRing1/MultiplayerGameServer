@@ -70,6 +70,8 @@ const createNewGame = () => {
     games[newGame.id] = newGame;
     currentGameId = newGame.id;
 
+    console.log("create new game");
+
     newGame.start();
 
     return newGame;
