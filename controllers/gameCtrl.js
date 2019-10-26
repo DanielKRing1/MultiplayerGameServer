@@ -7,7 +7,6 @@ let currentGameId;
 module.exports = {
     init: () => {
         // init
-        // createNewGame();
 
         return module.exports;
     },
