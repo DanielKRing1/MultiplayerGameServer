@@ -60,11 +60,12 @@ const updatePlayerPositions = (players) => {
     const elapsedTime = now - lastUpdate;
     
     Object.keys(players).forEach(key => {
-        console.log(elapsedTime);
+        console.log(now - lastUpdate);
         const player = players[key];
         player.updatePosition(elapsedTime)
     });
     
+    lastUpdate = now;
 }
 const sendPlayersToClients = (players, board) => {
     // const bufferData = Buffer.from(this.board);
