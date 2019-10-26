@@ -57,7 +57,7 @@ const update = (board) => {
 }
 const updatePlayerPositions = (players) => {
     const now = Date.now();
-    let elapsedTime = now - lastUpdate;
+    const elapsedTime = now - lastUpdate + 1;
     lastUpdate = now;
 
     Object.keys(players).forEach(key => {
