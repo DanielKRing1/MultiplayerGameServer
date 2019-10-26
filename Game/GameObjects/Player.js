@@ -21,6 +21,10 @@ const Player = class extends Circle {
         this.port = port;
     }
 
+    update(update){
+        Object.assign(this, update);
+    }
+
     updateDirection(direction){
         console.log("Updated Direction");
         this.direction = direction;

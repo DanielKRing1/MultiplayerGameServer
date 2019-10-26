@@ -44,6 +44,12 @@ module.exports = {
         return game.board.completeProvisionalPlayer(id, ip, port);
     },
 
+    onUpdatePlayer: (id, gameId, update) => {
+        const game = games[gameId];
+
+        game.board.updatePlayer(id, update);
+    },
+
     onRemovePlayer: async({ id, gameId }) => {
         // Remove Player
         console.log("Removing player...");

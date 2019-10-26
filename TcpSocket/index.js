@@ -21,7 +21,7 @@ server.on('connection', (socket) => {
     socket.on('data', (data) => {
         console.log('Tcp Socket on data--------------');
         
-        unterminatedMessage = mergeFragments(unterminatedMessage, data);
+        unterminatedMessage = handleFragments(socket.user, unterminatedMessage, data);
         console.log(`Unfinished message: '${unterminatedMessage}'`);
 
     });
@@ -67,7 +67,7 @@ const sendJwtToUser = (socket, jwt) => {
     socket.write(bufferData);
 }
 
-const mergeFragments = (currentMsg, data) => {
+const handleFragments = (user, currentMsg, data) => {
     let message = currentMsg;
 
     data = parseToString(data);
@@ -79,7 +79,7 @@ const mergeFragments = (currentMsg, data) => {
     for(let i = 0; i < fragmentCount - 1; i++){
         const fragment = dataFragments[i];
         message += fragment;
-        handleMessage(message);
+        handleMessage(message, user);
 
         message = '';
     }
@@ -95,9 +95,4 @@ const parseToString = (msg) => {
     const stringMsg = msg.toString();
 
     return stringMsg;
-}
-const parseToJson = (msg) => {
-    const jsonMsg = JSON.parse(msg);
-    
-    return jsonMsg;
 }
