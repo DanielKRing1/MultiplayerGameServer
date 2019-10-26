@@ -83,6 +83,8 @@ const getAllOpenGames = () => {
     return openGames;
 }
 
+
+
 // Faster
 // Returns current or new game
 const getNextOpenGame = () => {

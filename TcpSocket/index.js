@@ -89,18 +89,7 @@ const mergeFragments = (currentMsg, data) => {
 
     return message;
 }
-const handleMessage = (msg) => {
-    const json = parseToJson(msg);
 
-    switch(json.eventType){
-        case 'update-direction':
-            console.log("Update Direction");
-            console.log(json.direction);
-
-            const direction = Math.sqrt(json.direction.x*json.direction.x + json.direction.y*json.direction.y);
-            break;
-    }
-}
 
 const parseToString = (msg) => {
     const stringMsg = msg.toString();

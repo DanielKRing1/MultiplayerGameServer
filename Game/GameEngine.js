@@ -24,6 +24,10 @@ let GameEngine = class {
         return this.board.addPlayer(ip, port, socket);
     }
 
+    updatePlayerDirection(id, direction){
+        this.board.players[id].updateDirection(direction);
+    }
+
     start() {
         console.log("Start");
         lastUpdate = Date.now();

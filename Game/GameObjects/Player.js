@@ -21,6 +21,11 @@ const Player = class extends Circle {
         this.port = port;
     }
 
+    updateDirection(direction){
+        console.log("Updated Direction");
+        this.direction = direction;
+    }
+
     updatePosition(elapsedTime){
         const delta = {
             x: elapsedTime * this.direction.x,

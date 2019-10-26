@@ -47,13 +47,13 @@ const Board = class {
         return this.players;
     }
     getPublicPlayerData(){
-        let publicPlayerData = [];
+        let publicPlayerData = {};
 
         Object.keys(this.players).forEach(playerId => {
             const player = this.players[playerId];
 
             const publicData = player.getPublicData();
-            publicPlayerData.push(publicData);
+            publicPlayerData[playerId] = publicData;
         });
 
         return publicPlayerData;
@@ -74,7 +74,7 @@ const Board = class {
         const xPos = randInt(0, this.width);
         const yPos = randInt(0, this.height);
     
-        const player = new Player(socket, xPos, yPos, 0, 0, 1, 'test');
+        const player = new Player(socket, xPos, yPos, 0, 0, 1, 'rock');
     
         const id = player.id;
         this.provisionalPlayers[id] = player;
