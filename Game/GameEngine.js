@@ -65,7 +65,6 @@ const updatePlayerPositions = (players) => {
         player.updatePosition(elapsedTime)
     });
     
-    lastUpdate = now;
 }
 const sendPlayersToClients = (players, board) => {
     // const bufferData = Buffer.from(this.board);
