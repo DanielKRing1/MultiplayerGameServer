@@ -33,8 +33,8 @@ const Player = class extends Circle {
 
     updatePosition(elapsedTime){
         const delta = {
-            x: elapsedTime * this.direction.x,
-            y: elapsedTime * this.direction.y
+            x: 1000 / elapsedTime * this.direction.x,
+            y: 1000 / elapsedTime * this.direction.y
         }
 
 
