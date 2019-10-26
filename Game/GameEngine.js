@@ -61,7 +61,7 @@ const updatePlayerPositions = (players) => {
     lastUpdate = now;
     
     Object.keys(players).forEach(key => {
-        console.log(elapsedTime);
+        console.log(lastUpdate - now);
         const player = players[key];
         player.updatePosition(elapsedTime)
     });
