@@ -67,7 +67,7 @@ const updatePlayerPositions = (players) => {
     setLastUpdate();
 }
 const setLastUpdate = () => {
-    console.log(this.id);
+    console.log(GameEngine.id);
     console.log("Set Last Update");
     lastUpdate = new Date();
 }
