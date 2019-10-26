@@ -7,7 +7,7 @@ let currentGameId;
 module.exports = {
     init: () => {
         // init
-        // createNewGame();
+        createNewGame();
 
         return module.exports;
     },
@@ -70,11 +70,7 @@ const createNewGame = () => {
     return newGame;
 }
 const getCurrentGame = () => games[currentGameId];
-const isCurrentGameFull = () => {
-    console.log("is board full")
-    console.log(getCurrentGame())
-    getCurrentGame().isBoardFull();
-}
+const isCurrentGameFull = () => getCurrentGame() ? getCurrentGame().isBoardFull() : true;
 
 const getAllOpenGames = () => {
     let openGames = [];
