@@ -31,7 +31,7 @@ let GameEngine = class {
     start() {
         console.log("Start");
         lastUpdate = new Date();
-        this.updatePointer = setInterval(() => update(this.board), 1000 / updateFPS);
+        this.updatePointer = setInterval(() => update(this.board), 1000 / 3);
     }
 
     stop() {
@@ -58,13 +58,13 @@ const update = (board) => {
 const updatePlayerPositions = (players) => {
     const now = new Date();
     const elapsedTime = now - lastUpdate;
-    
+    lastUpdate = now;
+
     Object.keys(players).forEach(key => {
-        console.log(new Date() - lastUpdate);
+        console.log(elapsedTime);
         const player = players[key];
         player.updatePosition(elapsedTime)
     });
-    lastUpdate = now;
 }
 const sendPlayersToClients = (players, board) => {
     // const bufferData = Buffer.from(this.board);
