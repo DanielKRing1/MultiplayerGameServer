@@ -21,7 +21,7 @@ const Player = class extends Circle {
         this.port = port;
     }
 
-    update(update){
+    updateData(update){
         console.log(update);
         Object.assign(this, update);
     }
@@ -40,7 +40,7 @@ const Player = class extends Circle {
 
         // console.log(this.pos)
         // console.log(elapsedTime)
-        console.log(delta)
+        console.log(this.direction)
 
         this.pos.x += delta.x;
         this.pos.y += delta.y;

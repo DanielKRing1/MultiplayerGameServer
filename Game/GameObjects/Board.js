@@ -32,7 +32,7 @@ const Board = class {
     }
     updatePlayer(id, update){
         const player = this.players[id];
-        player.update(update);
+        player.updateData(update);
     }
     removePlayer(id){
         delete this.players[id];
