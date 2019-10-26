@@ -56,13 +56,6 @@ module.exports = {
 
         games[gameId].board.removePlayer(id);
     },
-
-    // Create JWT for user to 
-    connectPlayerToGame: (playerId, gameId, ip, port) => {
-        // ADD PLAYER TO BOARD
-        const game = games[gameId];
-        game.connectProvisionalPlayer(playerId, ip, port);
-    },
 }
 
 const createNewGame = () => {
@@ -77,7 +70,11 @@ const createNewGame = () => {
     return newGame;
 }
 const getCurrentGame = () => games[currentGameId];
-const isCurrentGameFull = () => getCurrentGame().isBoardFull();
+const isCurrentGameFull = () => {
+    console.log("is board full")
+    console.log(getCurrentGame())
+    getCurrentGame().isBoardFull();
+}
 
 const getAllOpenGames = () => {
     let openGames = [];
