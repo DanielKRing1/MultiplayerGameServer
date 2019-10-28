@@ -1,16 +1,16 @@
 # MultiplayerGameServer
 
-Connecting to Server (from Client)
+<b>Connecting to Server (from Client)</b>
 1. <b>Client -> Server -- Establish TCP Connection</b> <br/>
 Unity GameEngine Clients connect to the Server via TCP.
 2. <b>Client <- Server -- On Successful TCP Connection</b> <br/>
-Clients receive a response containing JWT (for use with sending UDP messages to server)
+Clients receive a response containing JWT (for future use when sending UDP messages to server)
 3. <b>Client -> Server -- Establish UDP Connection</b> <br/>
 Client will attempt UDP connection to Server by sending UDP packet 5 x's per sec until a UDP packet successfully reaches the Server (This is known as UDP Hole Punching and is required to connect Clients in NAT-ed Networks, aka Computers that exist behind a router; Because the router IP address is shared among all hosts on the network and each host may use the same port to communicate with the Server, the Server will be unable to distinguish Clients before receiving a Network Address Translation from the Router)
 4. <b>Client <- Server -- On Successful UDP Connection</b> <br/>
 Server registers successful 'UDP Hole Punch' and sends TCP response to Client; Client stops UDP connection attempts
 
-Handling Players (on Server)
+<b>Handling Players (on Server)</b>
 1. <b>Receives request from Player</b> (via Client TCP) to join Game
 2. <b>Find Game to Join</b>
       Checks 'Games' HashMap for an open Game
@@ -25,3 +25,7 @@ Handling Players (on Server)
       30 x's/sec: <br/>
       GameEngine will iterate through list of Players, Calculate their Position, and send each Player their Positional Data and Nearby Players <br/>
 5. <b>On TCP Socket disconnect, 'Remove' Player</b> from GameEngine
+
+<b>Future Work</b>
+1. Add Database to Track User Accounts
+2. Add Redis to track User Habits (requests/sec) and ban malicious Ip's
